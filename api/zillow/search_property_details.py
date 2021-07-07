@@ -2,7 +2,7 @@
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
 
-def search_property_details(property_link):
+def search_property_details(property_link, loan_to_value):
     import requests
     import json
      
@@ -29,8 +29,10 @@ def search_property_details(property_link):
 
     #save zestimate
     zestimate = float(data['zestimate'])
+    loan_amount  = zestimate * (loan_to_value/100)
 
     print(f"Your zestimate is ${zestimate:.02f}")
+    print(f"Your loan amount is ${loan_amount:.02f}")
 
     #return response.text
     return zestimate
