@@ -73,6 +73,8 @@ def get_applicant_info():
 
     credit_score = questionary.text("What's your credit score?").ask()
     property_link = questionary.text("What's the property url?").ask()
+    #ltv = questionary.text("What's the loan to value %?").ask()
+
     #debt = questionary.text("What's your current amount of monthly debt?").ask()
     #income = questionary.text("What's your total monthly income?").ask()
     #loan_amount = questionary.text("What's your desired loan amount?").ask()
@@ -80,6 +82,7 @@ def get_applicant_info():
 
     credit_score = int(credit_score)
     property_link = str(property_link)
+    #ltv = int(ltv)
     #debt = float(debt)
     #income = float(income)
     #loan_amount = float(loan_amount)

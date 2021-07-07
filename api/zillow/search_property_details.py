@@ -1,10 +1,12 @@
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
+
 def search_property_details(property_link):
     import requests
+    import json
      
-    property_link = 'https://www.zillow.com/homedetails/2815-W-Avenue-K12-APT-172-Lancaster-CA-93536/20282227_zpid/'
+    #property_link = 'https://www.zillow.com/homedetails/2815-W-Avenue-K12-APT-172-Lancaster-CA-93536/20282227_zpid/'
 
 
     url = "https://zillow-com1.p.rapidapi.com/property"
@@ -18,10 +20,20 @@ def search_property_details(property_link):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    print(response.text)
+    #print(response.text)
     
-    return response.text
-    
+    #load data into json dictionary
+    data = json.loads(response.text)
+
+    #print(type(data))
+
+    #save zestimate
+    zestimate = float(data['zestimate'])
+
+    print(f"Your zestimate is ${zestimate:.02f}")
+
+    #return response.text
+    return zestimate
 
 
 # %%
