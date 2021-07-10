@@ -179,6 +179,7 @@ def run():
     #test api
     search_property_details(property_link, loan_to_value)
     
+    #import machine learning
 
     # Find qualifying loans
     # qualifying_loans = find_qualifying_loans(
