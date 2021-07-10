@@ -36,6 +36,8 @@ from qualifier.utils.calculators import (
 #import Zillow RapidAPI
 from api.zillow.search_property_details import search_property_details
 
+#import machine learning
+from machine_learning.machine_learning import machine_learning
 
 # %%
 #import qualifiers
@@ -180,6 +182,7 @@ def run():
     search_property_details(property_link, loan_to_value)
     
     #import machine learning
+    machine_learning()
 
     # Find qualifying loans
     # qualifying_loans = find_qualifying_loans(
