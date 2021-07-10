@@ -15,7 +15,6 @@
 import sys
 import fire
 import questionary
-import pandas as pd
 
 from pathlib import Path
 from qualifier.utils.fileio import (
@@ -61,12 +60,7 @@ def load_bank_data():
     if not csvpath.exists():
         sys.exit(f"Oops! Can't find this path: {csvpath}")
 
-    loan_data_df = pd.read_csv(
-        Path('./data/train.csv')
-    )
-
-    return loan_data_df
-    #return load_csv(csvpath)
+    return load_csv(csvpath)
 
 
 # %%
