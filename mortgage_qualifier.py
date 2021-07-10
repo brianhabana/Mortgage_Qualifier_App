@@ -37,7 +37,7 @@ from qualifier.utils.calculators import (
 from api.zillow.search_property_details import search_property_details
 
 #import machine learning
-from machine_learning.machine_learning import machine_learning
+from ML.machine_learning import machine_learning
 
 # %%
 #import qualifiers
