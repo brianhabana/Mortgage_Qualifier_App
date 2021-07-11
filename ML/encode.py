@@ -59,4 +59,17 @@ def encode6(Property_Area):
             return 0
         else:
             return 2
+
+def encode7(Dependents):
         
+        """
+        This function encodes a loan status to either 1 or 0.
+        """
+        if Dependents == '0':
+            return 0
+        elif Dependents == '1':
+            return 1
+        elif Dependents == '2':
+            return 2    
+        else:
+            return 3
