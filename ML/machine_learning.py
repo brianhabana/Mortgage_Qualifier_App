@@ -16,11 +16,6 @@ def machine_learning(user_input):
     
     from pathlib import Path
 
-    #create user input dataframe
-    user_df = pd.DataFrame(data=user_input)
-    print('Printing user data...')
-    print(user_df)
-
     #import train data
     train_df = pd.read_csv(
         Path('./data/train.csv')
@@ -36,10 +31,7 @@ def machine_learning(user_input):
 
     #print('adding userdata to test...')
     #test_df = test_df.append(user_df)
-    
-    print(test_df.tail)
-    print(user_df.tail)
-
+        
     print('Loading ML Data...')
     loan_data_df = train_df.append(test_df)
     
@@ -126,23 +118,46 @@ def machine_learning(user_input):
     print('Scaling test data')
     test_df = ss.fit_transform(test_df)
 
-    print('Predicting Approval on test data...')
+    print('Predicting Loan Approval on test data...')
     pred = SGDClassifier.predict(test_df)
 
     print(pred)
 
     #----user data------#
-    """"
-    print('Predicting Approval on user data...')
+    print('Predicting Loan Approval on user data...')
 
-    user_df = loan_data_df[:982]
-    user_df = test_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
-    
-    print('Scaling test data')
-    user_df = ss.fit_transform(test_df)
-
+    #create user input dataframe
+    user_df = pd.DataFrame(data=user_input)
+    print('Printing user data...')
     print(user_df)
+
+    print('Checking User data for null values..')
+    #print(user_df.isnull().sum())
+
+    print('normalizing user data...')
+    user_df['LoanAmount_log']= np.log(user_df['LoanAmount'])
+    user_df['ApplicantIncome_log']= np.log(user_df['ApplicantIncome'])
+
+    print('encoding user data...')
+    
+    #user_df['Loan_Status'] = user_df["Loan_Status"].apply(encode1)
+    user_df['Gender'] = user_df["Gender"].apply(encode2)
+    user_df['Married'] = user_df["Married"].apply(encode3)
+    user_df['Education'] = user_df["Education"].apply(encode4)
+    user_df['Self_Employed'] = user_df["Self_Employed"].apply(encode5)
+    user_df['Property_Area'] = user_df["Property_Area"].apply(encode6)
+    user_df['Dependents'] = user_df["Dependents"].apply(encode7)
+
+    print('setting user data')
+    user_df = user_df[:1]
+    user_df = user_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
+
+    print('Scaling user data')
+    user_df = ss.fit_transform(user_df)
+
+    print('Predicting Loan Approval on USER data...')
     pred = SGDClassifier.predict(user_df)
 
     print(pred)
-    """
+
+
