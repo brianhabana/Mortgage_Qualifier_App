@@ -86,6 +86,8 @@ def get_applicant_info():
     Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)").ask()
     Credit_History = questionary.text("Do you have any credit history?").ask()
     Property_Area = questionary.text("What's the property Area? 0 = City, 1 = Rural, 2 = Semirural").ask()
+    
+    print('Loading app data...')
 
     #debt = questionary.text("What's your current amount of monthly debt?").ask()
     #income = questionary.text("What's your total monthly income?").ask()
