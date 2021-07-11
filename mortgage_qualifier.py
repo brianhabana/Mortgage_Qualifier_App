@@ -179,7 +179,7 @@ def run():
     credit_score, property_link, loan_to_value = get_applicant_info()
 
     #test api
-    search_property_details(property_link, loan_to_value)
+    #search_property_details(property_link, loan_to_value)
     
     #import machine learning
     machine_learning()
