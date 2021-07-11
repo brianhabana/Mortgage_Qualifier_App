@@ -1,6 +1,3 @@
-#import encode
-
-#from seaborn.matrix import heatmap
 from ML.encode import encode1
 from ML.encode import encode2
 from ML.encode import encode3
@@ -10,7 +7,7 @@ from ML.encode import encode6
 from ML.encode import encode7
 from sklearn import metrics
 
-def machine_learning():
+def machine_learning(user_input):
     import pandas as pd
     import matplotlib.pyplot as plt
     import seaborn as sns
@@ -18,6 +15,11 @@ def machine_learning():
     import os
     
     from pathlib import Path
+
+    #create user input dataframe
+    user_df = pd.DataFrame(data=user_input)
+    print('Printing user data...')
+    print(user_df)
 
     #import train data
     train_df = pd.read_csv(
@@ -31,6 +33,12 @@ def machine_learning():
     print('Checking for null values..')
     test_df.isnull().sum()
     train_df.isnull().sum()
+
+    #print('adding userdata to test...')
+    #test_df = test_df.append(user_df)
+    
+    print(test_df.tail)
+    print(user_df.tail)
 
     print('Loading ML Data...')
     loan_data_df = train_df.append(test_df)
@@ -79,7 +87,7 @@ def machine_learning():
     loan_data_df['Property_Area'] = loan_data_df["Property_Area"].apply(encode6)
     loan_data_df['Dependents'] = loan_data_df["Dependents"].apply(encode7)
     
-    print('Splitting X and y...80:20...')
+    print('Splitting X and y...80%:20%...')
 
     train_df = loan_data_df.iloc[:614]
     X = train_df.iloc[:,np.r_[1:5,9:11,13:14]].values
@@ -112,13 +120,29 @@ def machine_learning():
 
     print('The accuracy of Logistic Regression is ', metrics.accuracy_score(y_pred,y_test))
 
-    print('Predicting Approval on test data...')
     test_df = loan_data_df[615:981]
     test_df = test_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
 
     print('Scaling test data')
     test_df = ss.fit_transform(test_df)
 
+    print('Predicting Approval on test data...')
     pred = SGDClassifier.predict(test_df)
 
     print(pred)
+
+    #----user data------#
+    """"
+    print('Predicting Approval on user data...')
+
+    user_df = loan_data_df[:982]
+    user_df = test_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
+    
+    print('Scaling test data')
+    user_df = ss.fit_transform(test_df)
+
+    print(user_df)
+    pred = SGDClassifier.predict(user_df)
+
+    print(pred)
+    """

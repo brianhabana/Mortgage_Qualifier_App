@@ -75,17 +75,17 @@ def get_applicant_info():
     """
 
     property_link = questionary.text("What's the property url?").ask()
-    loan_to_value = questionary.text("What's the requested loan to value %?").ask()
-    Gender = questionary.text("What's your Gender?").ask()
-    Married = questionary.text("Are you Married?").ask()
-    Dependents = questionary.text("How many Dependents(if any)?").ask()
-    Education = questionary.text("Did you graduate college?").ask()
-    Self_Employed = questionary.text("Are you self employed?").ask()
-    ApplicantIncome = questionary.text("What is your monthly gross income?").ask()
-    CoapplicantIncome = questionary.text("What's your co-applicant's income (if any)?").ask()
-    Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)").ask()
-    Credit_History = questionary.text("Do you have any credit history?").ask()
-    Property_Area = questionary.text("What's the property Area? 0 = City, 1 = Rural, 2 = Semirural").ask()
+    loan_to_value = questionary.text("What's the requested loan to value (LTV)%?").ask()
+    #Gender = questionary.text("What's your Gender? (Male/Female)?").ask()
+    #Married = questionary.text("Are you Married (Yes/No)?").ask()
+    #Dependents = questionary.text("How many Dependents(if any)?").ask()
+    #Education = questionary.text("Did you Graduate College (Graduate/Not Graduate)?").ask()
+    #Self_Employed = questionary.text("Are you self employed (Yes/No)?").ask()
+    #ApplicantIncome = questionary.text("What is your monthly gross income?").ask()
+    #CoapplicantIncome = questionary.text("What's your co-applicant's income (if any)?").ask()
+    #Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)?").ask()
+    #Credit_History = questionary.text("Do you have any credit history(Yes/No)?").ask()
+    #Property_Area = questionary.text("What's the property Area(Urban / Rural /Semirural)?").ask()
     
     print('Loading app data...')
 
@@ -94,22 +94,36 @@ def get_applicant_info():
     #loan_amount = questionary.text("What's your desired loan amount?").ask()
     #home_value = questionary.text("What's your home value?").ask()
 
-    LoanID = int(123456)
+    #LoanID = str('LP002990')
     property_link = str(property_link)
     loan_to_value = float(loan_to_value)
-    Gender = str(Gender)
-    Married = str(Married)
-    Dependents = int(Dependents)
-    Education = str(Education)
-    Self_Employed = str(Self_Employed)
-    ApplicantIncome = float(ApplicantIncome)
-    CoapplicantIncome = float(CoapplicantIncome)
-    LoanAmount = float(390 * (loan_to_value/100))
-    Loan_Amount_Term = int(Loan_Amount_Term)
-    Credit_History = str(Credit_History)
-    Property_Area = int(Property_Area)
+    #Gender = str(Gender)
+    #Married = str(Married)
+    #Dependents = int(Dependents)
+    #Education = str(Education)
+    #Self_Employed = str(Self_Employed)
+    #ApplicantIncome = float(ApplicantIncome)
+    #CoapplicantIncome = float(CoapplicantIncome)
+    #LoanAmount = float(390 * (loan_to_value/100))
+    #Loan_Amount_Term = int(Loan_Amount_Term)
+    #Credit_History = str(Credit_History)
+    #Property_Area = str(Property_Area)
 
-    d = {'LoanID': [LoanID], 
+    LoanID = 'LP002990'
+    Gender = 'Male'
+    Married = 'Yes'
+    Dependents = 0
+    Education = 'Graduate'
+    Self_Employed = 'No'
+    ApplicantIncome = 4000
+    CoapplicantIncome = 0
+    LoanAmount = 290
+    Loan_Amount_Term = 360
+    Credit_History = 1
+    Property_Area = 'Urban'
+
+    user_input = {
+     'LoanID': [LoanID], 
      'Gender': [Gender],
      'Married': [Married], 
      'Dependents' : [Dependents], 
@@ -123,16 +137,12 @@ def get_applicant_info():
      'Property_Area' : [Property_Area],
     }
 
-    user_df = pd.DataFrame(data=d)
-
-
     #debt = float(debt)
     #income = float(income)
     #loan_amount = float(loan_amount)
     #home_value = float(home_value)
 
-    return property_link, loan_to_value
-    #Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome, CoapplicantIncome, Loan_Amount, Loan_Amount_Term, Credit_History, Property_Area
+    return property_link, loan_to_value, user_input
 
 
 # %%
@@ -219,13 +229,13 @@ def run():
     #bank_data = load_bank_data()
 
     # Get the applicant's information
-    property_link, loan_to_value = get_applicant_info()
+    property_link, loan_to_value, user_input = get_applicant_info()
 
     #test api
     search_property_details(property_link, loan_to_value)
     
     #import machine learning
-    machine_learning()
+    machine_learning(user_input)
 
     # Find qualifying loans
     # qualifying_loans = find_qualifying_loans(
