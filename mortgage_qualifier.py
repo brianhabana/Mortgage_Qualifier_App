@@ -72,9 +72,9 @@ def get_applicant_info():
         Returns the applicant's financial information.
     """
 
-    credit_score = questionary.text("What's your credit score?").ask()
-    property_link = questionary.text("What's the property url?").ask()
-    loan_to_value = questionary.text("What's the requested loan to value %?").ask()
+    #credit_score = questionary.text("What's your credit score?").ask()
+    #property_link = questionary.text("What's the property url?").ask()
+    #loan_to_value = questionary.text("What's the requested loan to value %?").ask()
 
     #debt = questionary.text("What's your current amount of monthly debt?").ask()
     #income = questionary.text("What's your total monthly income?").ask()
@@ -176,7 +176,7 @@ def run():
     bank_data = load_bank_data()
 
     # Get the applicant's information
-    credit_score, property_link, loan_to_value = get_applicant_info()
+    #credit_score, property_link, loan_to_value = get_applicant_info()
 
     #test api
     #search_property_details(property_link, loan_to_value)
