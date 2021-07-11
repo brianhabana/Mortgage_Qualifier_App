@@ -160,4 +160,11 @@ def machine_learning(user_input):
 
     print(pred)
 
+    approval = pred
+
+    if pred[0] == 1:
+        print('Congats, your Loan is Approved!')
+    else:
+        print('Sorry...please stack more stats!')
+
 
