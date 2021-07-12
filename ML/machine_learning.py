@@ -127,7 +127,7 @@ def machine_learning(user_input):
     print('Scaling test data')
     test_df = ss.fit_transform(test_df)
 
-    print('Predicting Loan Approval on test data...')
+    print('Predicting Loan Approval on user data...')
     pred = SGDClassifier.predict(test_df)
 
     
