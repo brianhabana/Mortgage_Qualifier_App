@@ -76,16 +76,16 @@ def get_applicant_info():
 
     property_link = questionary.text("What's the property url?").ask()
     loan_to_value = questionary.text("What's the requested loan to value (LTV)%?").ask()
-    #Gender = questionary.text("What's your Gender? (Male/Female)?").ask()
-    #Married = questionary.text("Are you Married (Yes/No)?").ask()
-    #Dependents = questionary.text("How many Dependents(if any)?").ask()
-    #Education = questionary.text("Did you Graduate College (Graduate/Not Graduate)?").ask()
-    #Self_Employed = questionary.text("Are you self employed (Yes/No)?").ask()
-    #ApplicantIncome = questionary.text("What is your monthly gross income?").ask()
-    #CoapplicantIncome = questionary.text("What's your co-applicant's income (if any)?").ask()
-    #Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)?").ask()
-    #Credit_History = questionary.text("Do you have any credit history(Yes/No)?").ask()
-    #Property_Area = questionary.text("What's the property Area(Urban / Rural /Semirural)?").ask()
+    Gender = questionary.text("What's your Gender? (Male/Female)?").ask()
+    Married = questionary.text("Are you Married (Yes/No)?").ask()
+    Dependents = questionary.text("How many Dependents(if any)?").ask()
+    Education = questionary.text("Did you Graduate College (Graduate/Not Graduate)?").ask()
+    Self_Employed = questionary.text("Are you self employed (Yes/No)?").ask()
+    ApplicantIncome = questionary.text("What is your monthly gross income?").ask()
+    CoapplicantIncome = questionary.text("What's your co-applicant's income (if any)?").ask()
+    Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)?").ask()
+    Credit_History = questionary.text("Do you have any credit history(1 for Yes /0 for No)?").ask()
+    Property_Area = questionary.text("What's the property Area(Urban / Rural /Semirural)?").ask()
     
     print('Loading app data...')
 
@@ -94,34 +94,35 @@ def get_applicant_info():
     #loan_amount = questionary.text("What's your desired loan amount?").ask()
     #home_value = questionary.text("What's your home value?").ask()
 
-    #LoanID = str('LP002990')
+    LoanID = 'LP002990'
     property_link = str(property_link)
     loan_to_value = float(loan_to_value)
     #Gender = str(Gender)
     #Married = str(Married)
-    #Dependents = int(Dependents)
-    #Education = str(Education)
-    #Self_Employed = str(Self_Employed)
-    #ApplicantIncome = float(ApplicantIncome)
-    #CoapplicantIncome = float(CoapplicantIncome)
-    #LoanAmount = float(390 * (loan_to_value/100))
-    #Loan_Amount_Term = int(Loan_Amount_Term)
-    #Credit_History = str(Credit_History)
-    #Property_Area = str(Property_Area)
+    Dependents = int(Dependents)
+    Education = str(Education)
+    Self_Employed = str(Self_Employed)
+    ApplicantIncome = int(ApplicantIncome)
+    CoapplicantIncome = int(CoapplicantIncome)
+    LoanAmount = int(390) * float((loan_to_value/100))
+    Loan_Amount_Term = int(Loan_Amount_Term)
+    Credit_History = int(Credit_History)
+    Property_Area = str(Property_Area)
 
-    LoanID = 'LP002990'
-    Gender = 'Male'
-    Married = 'Yes'
-    Dependents = 0
-    Education = 'Graduate'
-    Self_Employed = 'No'
-    ApplicantIncome = 4000
-    CoapplicantIncome = 0
-    LoanAmount = 290
-    Loan_Amount_Term = 360
-    Credit_History = 1
-    Property_Area = 'Urban'
+    #LoanID = 'LP002990'
+    #Gender = 'Male'
+    #Married = 'Yes'
+    #Dependents = 0
+    #Education = 'Graduate'
+    #Self_Employed = 'No'
+    #ApplicantIncome = 4000
+    #CoapplicantIncome = 0
+    #LoanAmount = 290
+    #Loan_Amount_Term = 360
+    #Credit_History = 1
+    #Property_Area = 'Urban'
 
+    """"
     user_input = {
      'LoanID': [LoanID], 
      'Gender': [Gender],
@@ -136,7 +137,11 @@ def get_applicant_info():
      'Credit_History' : [Credit_History],
      'Property_Area' : [Property_Area],
     }
-
+    """
+    
+    user_input =  [LoanID, Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome,
+    CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History,Property_Area]
+    
     #debt = float(debt)
     #income = float(income)
     #loan_amount = float(loan_amount)

@@ -16,6 +16,10 @@ def machine_learning(user_input):
     
     from pathlib import Path
 
+    #create user input dataframe
+    #user_df = pd.DataFrame(data=user_input)
+    #print(user_df)
+
     #import train data
     train_df = pd.read_csv(
         Path('./data/train.csv')
@@ -24,7 +28,13 @@ def machine_learning(user_input):
     test_df = pd.read_csv(
         Path('./data/test.csv')
         )
-    
+
+    test_df.loc[-1] = user_input
+
+    test_df = test_df.reset_index(drop=True)
+
+    print(test_df.tail(5))
+
     print('Checking for null values..')
     test_df.isnull().sum()
     train_df.isnull().sum()
@@ -79,7 +89,6 @@ def machine_learning(user_input):
     loan_data_df['Property_Area'] = loan_data_df["Property_Area"].apply(encode6)
     loan_data_df['Dependents'] = loan_data_df["Dependents"].apply(encode7)
     
-    print('Splitting X and y...80%:20%...')
 
     train_df = loan_data_df.iloc[:614]
     X = train_df.iloc[:,np.r_[1:5,9:11,13:14]].values
@@ -112,7 +121,7 @@ def machine_learning(user_input):
 
     print('The accuracy of Logistic Regression is ', metrics.accuracy_score(y_pred,y_test))
 
-    test_df = loan_data_df[615:981]
+    test_df = loan_data_df[615:982]
     test_df = test_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
 
     print('Scaling test data')
@@ -121,16 +130,25 @@ def machine_learning(user_input):
     print('Predicting Loan Approval on test data...')
     pred = SGDClassifier.predict(test_df)
 
+    
     print(pred)
 
+    print(pred.shape)
+
+    if pred[366] == 1:
+        print('Congats, your Loan is Approved!')
+    else:
+        print('Sorry...please stack more stats!')
+
     #----user data------#
-    print('Predicting Loan Approval on user data...')
+    
 
-    #create user input dataframe
-    user_df = pd.DataFrame(data=user_input)
-    print('Printing user data...')
-    print(user_df)
+    #print('Predicting Loan Approval on user data...')
 
+
+    
+
+    """"
     print('Checking User data for null values..')
     #print(user_df.isnull().sum())
 
@@ -152,19 +170,18 @@ def machine_learning(user_input):
     user_df = user_df[:1]
     user_df = user_df.iloc[:,np.r_[1:5, 9:11, 13:14]].values
 
+    test_df = test_df(user_df)
+
     print('Scaling user data')
-    user_df = ss.fit_transform(user_df)
+    test_df = ss.fit_transform(test_df)
 
     print('Predicting Loan Approval on USER data...')
-    pred = SGDClassifier.predict(user_df)
+    pred = SGDClassifier.predict(test_df)
 
     print(pred)
 
-    approval = pred
-
-    if pred[0] == 1:
+    if pred[35] == 1:
         print('Congats, your Loan is Approved!')
     else:
         print('Sorry...please stack more stats!')
-
-
+"""
