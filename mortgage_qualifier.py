@@ -4,7 +4,7 @@
 # # Mortgage Qualifier
 # """Loan Qualifier Application.
 # 
-# This is a command line application to match applicants with mortgage loans.
+# This is a command line application to match applicants with mortgage approvals.
 # 
 # Example:
 #     $ mqa.py
@@ -65,7 +65,7 @@ def load_bank_data():
 
 # %%
 #load applicant info
-def get_applicant_info():
+def get_applicant_info(loan_to_value, zestimate):
     import pandas as pd
 
     """Prompt dialog to get the applicant's financial information.
@@ -74,8 +74,6 @@ def get_applicant_info():
         Returns the applicant's financial information.
     """
 
-    property_link = questionary.text("What's the property url?").ask()
-    loan_to_value = questionary.text("What's the requested loan to value (LTV)%?").ask()
     Gender = questionary.text("What's your Gender? (Male/Female)?").ask()
     Married = questionary.text("Are you Married (Yes/No)?").ask()
     Dependents = questionary.text("How many Dependents(if any)?").ask()
@@ -95,7 +93,7 @@ def get_applicant_info():
     #home_value = questionary.text("What's your home value?").ask()
 
     LoanID = 'LP002990'
-    property_link = str(property_link)
+    #property_link = str(property_link)
     loan_to_value = float(loan_to_value)
     #Gender = str(Gender)
     #Married = str(Married)
@@ -104,7 +102,7 @@ def get_applicant_info():
     Self_Employed = str(Self_Employed)
     ApplicantIncome = int(ApplicantIncome)
     CoapplicantIncome = int(CoapplicantIncome)
-    LoanAmount = int(390) * float((loan_to_value/100))
+    LoanAmount = int(zestimate) * float((loan_to_value/100))
     Loan_Amount_Term = int(Loan_Amount_Term)
     Credit_History = int(Credit_History)
     Property_Area = str(Property_Area)
@@ -141,13 +139,13 @@ def get_applicant_info():
     
     user_input =  [LoanID, Gender, Married, Dependents, Education, Self_Employed, ApplicantIncome,
     CoapplicantIncome, LoanAmount, Loan_Amount_Term, Credit_History,Property_Area]
-    
+
     #debt = float(debt)
     #income = float(income)
     #loan_amount = float(loan_amount)
     #home_value = float(home_value)
 
-    return property_link, loan_to_value, user_input
+    return user_input
 
 
 # %%
@@ -227,17 +225,17 @@ def save_qualifying_loans(qualifying_loans):
 # %%
 #run main function
 def run():
+
     """The main function for running the script."""
 
     print('***** MORTGAGE QUALIFIER APP *****')
     # Load the latest Bank data
-    #bank_data = load_bank_data()
+
+    #query api and return zestimate and loan to value
+    zestimate, loan_to_value = search_property_details()
 
     # Get the applicant's information
-    property_link, loan_to_value, user_input = get_applicant_info()
-
-    #test api
-    search_property_details(property_link, loan_to_value)
+    user_input = get_applicant_info(loan_to_value, zestimate)
     
     #import machine learning
     machine_learning(user_input)
