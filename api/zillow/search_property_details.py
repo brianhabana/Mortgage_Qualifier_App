@@ -30,7 +30,7 @@ def search_property_details():
     #print(type(data))
 
     #save zestimate
-    zestimate = float(data['zestimate'])
+    zestimate = int(data['zestimate']/1000)
     #loan_amount  = zestimate * (loan_to_value/100)
 
     #print(f"Your zestimate is ${zestimate:.02f}")
