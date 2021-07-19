@@ -136,9 +136,9 @@ def machine_learning(user_input):
     print(pred.shape)
 
     if pred[366] == 1:
-        print('Congats, your Loan is Approved!')
+        print('Congats, your Loan is Approved! Show me the money!')
     else:
-        print('Sorry...please stack more stats!')
+        print('Sorry...please stack more sats!')
 
     #----user data------#
     
