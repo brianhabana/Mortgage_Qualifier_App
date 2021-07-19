@@ -70,4 +70,4 @@ MIT
 
 ## Screenshots
 
-https://github.com/brianhabana/Mortgage_Qualifier_App/blob/main/images/screenshot1.png
+![alt text](https://github.com/brianhabana/Mortgage_Qualifier_App/blob/main/images/screenshot1.png)
