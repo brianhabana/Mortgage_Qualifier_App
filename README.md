@@ -40,7 +40,7 @@ python app.py
 
 Upon launching the loan qualifier application you will be greeted with the following prompts.
 
-![Loan Qualifier Prompts]()
+![Mortgage Qualifier Prompts]()
 Answers must match exactly and are case sensitive
 
 What's the property link (enter zillow public link)
