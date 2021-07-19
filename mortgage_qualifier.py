@@ -81,7 +81,7 @@ def get_applicant_info(loan_to_value, zestimate):
     Self_Employed = questionary.text("Are you self employed (Yes/No)?").ask()
     ApplicantIncome = questionary.text("What is your monthly gross income?").ask()
     CoapplicantIncome = questionary.text("What's your co-applicant's income (if any)?").ask()
-    Loan_Amount_Term = questionary.text("How in months is the term (360 is 30 yrs)?").ask()
+    Loan_Amount_Term = questionary.text("How many months is the term (360 is 30 yrs)?").ask()
     Credit_History = questionary.text("Do you have any credit history(1 for Yes /0 for No)?").ask()
     Property_Area = questionary.text("What's the property Area(Urban / Rural /Semirural)?").ask()
     

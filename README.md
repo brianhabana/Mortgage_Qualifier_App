@@ -69,3 +69,5 @@ Brought to you by UC Berkeley Extension.
 MIT
 
 ## Screenshots
+
+https://github.com/brianhabana/Mortgage_Qualifier_App/blob/main/images/screenshot1.png
